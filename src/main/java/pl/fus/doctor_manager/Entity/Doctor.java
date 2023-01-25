@@ -28,4 +28,16 @@ public class Doctor {
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", expertise='" + expertise + '\'' +
+                ", address=" + address +
+                ", addDate=" + addDate +
+                ", hospital=" + hospital +
+                '}';
+    }
 }

@@ -25,4 +25,13 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital")
     private List<Doctor> doctorList = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Hospital{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                ", doctorList=" + doctorList +
+                '}';
+    }
 }

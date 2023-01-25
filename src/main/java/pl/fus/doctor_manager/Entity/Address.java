@@ -22,4 +22,16 @@ public class Address {
     private Doctor doctor;
     @OneToOne(mappedBy = "address", cascade = {CascadeType.PERSIST})
     private Hospital hospital;
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", location='" + location + '\'' +
+                ", street='" + street + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", doctor=" + doctor +
+                ", hospital=" + hospital +
+                '}';
+    }
 }
