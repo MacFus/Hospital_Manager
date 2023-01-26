@@ -9,6 +9,7 @@ public class HospitalMapper {
 
     public Hospital map(HospitalDto dto){
         Hospital hospital = new Hospital();
+        hospital.setId(dto.getId());
         hospital.setName(dto.getName());
         hospital.setAddress(dto.getAddress());
         hospital.setDoctorList(dto.getDoctorList());

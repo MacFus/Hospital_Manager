@@ -17,6 +17,6 @@ public class HospitalDto {
     private Long id;
     private String name;
     private Address address;
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Doctor> doctorList;
 }
