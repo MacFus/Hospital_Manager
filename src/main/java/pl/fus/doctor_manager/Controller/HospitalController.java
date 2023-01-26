@@ -1,18 +1,19 @@
 package pl.fus.doctor_manager.Controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pl.fus.doctor_manager.DTO.HospitalDto;
 import pl.fus.doctor_manager.Entity.Hospital;
 import pl.fus.doctor_manager.Service.HospitalService;
 
+import javax.print.attribute.standard.Media;
 import java.net.URI;
+import java.util.List;
 
 @RestController
-@RequestMapping("/hospital")
+@RequestMapping(value = "/hospital",consumes = MediaType.APPLICATION_JSON_VALUE)
 public class HospitalController {
     private final HospitalService hospitalService;
 
@@ -20,6 +21,11 @@ public class HospitalController {
         this.hospitalService = hospitalService;
     }
 
+    @GetMapping("/all")
+    ResponseEntity<List<HospitalDto>> getAllHospitals() {
+        List<HospitalDto> hospitalDtoList = hospitalService.getAll();
+        return  ResponseEntity.ok(hospitalDtoList);
+    }
 
     @PostMapping
     ResponseEntity<Hospital> save(@RequestBody Hospital hospital) {

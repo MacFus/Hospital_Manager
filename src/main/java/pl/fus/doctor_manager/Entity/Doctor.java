@@ -1,5 +1,8 @@
 package pl.fus.doctor_manager.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonMerge;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -26,6 +30,7 @@ public class Doctor {
     //w tabeli doctor powstanie pole wskazujące na dany szpital
     @ManyToOne(optional = false)
     @JoinColumn(name = "hospital_id")
+    @JsonBackReference
     private Hospital hospital;
 
     @Override

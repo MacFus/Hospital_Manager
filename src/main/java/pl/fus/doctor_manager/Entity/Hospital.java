@@ -1,5 +1,8 @@
 package pl.fus.doctor_manager.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,8 +24,10 @@ public class Hospital {
     private String name;
     @OneToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "address_id", unique = true)
+    @JsonManagedReference
     private Address address;
     @OneToMany(mappedBy = "hospital")
+    @JsonManagedReference
     private List<Doctor> doctorList = new ArrayList<>();
 
     @Override

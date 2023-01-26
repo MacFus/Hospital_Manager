@@ -1,5 +1,6 @@
 package pl.fus.doctor_manager.Controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,7 @@ import pl.fus.doctor_manager.Service.DoctorService;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/doctor")
+@RequestMapping(value = "/doctor",consumes = MediaType.APPLICATION_JSON_VALUE)
 public class DoctorController {
     private final DoctorService doctorService;
 

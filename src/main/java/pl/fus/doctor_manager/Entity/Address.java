@@ -1,5 +1,6 @@
 package pl.fus.doctor_manager.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,8 +20,10 @@ public class Address {
     private String street;
     private String postcode;
     @OneToOne(mappedBy = "address", cascade = {CascadeType.PERSIST})
+    @JsonBackReference
     private Doctor doctor;
     @OneToOne(mappedBy = "address", cascade = {CascadeType.PERSIST})
+    @JsonBackReference
     private Hospital hospital;
 
     @Override
