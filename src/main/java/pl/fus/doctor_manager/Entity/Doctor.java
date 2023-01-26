@@ -1,6 +1,7 @@
 package pl.fus.doctor_manager.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonMerge;
 import jakarta.persistence.*;
@@ -30,7 +31,7 @@ public class Doctor {
     //w tabeli doctor powstanie pole wskazujące na dany szpital
     @ManyToOne(optional = false)
     @JoinColumn(name = "hospital_id")
-    @JsonBackReference
+//    @JsonBackReference
     private Hospital hospital;
 
     @Override

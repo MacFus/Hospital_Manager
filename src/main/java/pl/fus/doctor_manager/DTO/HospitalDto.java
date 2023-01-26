@@ -10,44 +10,13 @@ import pl.fus.doctor_manager.Entity.Doctor;
 
 import java.util.List;
 
-
-
+@Getter
+@Setter
 @NoArgsConstructor
 public class HospitalDto {
     private Long id;
     private String name;
     private Address address;
+    @JsonManagedReference
     private List<Doctor> doctorList;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public List<Doctor> getDoctorList() {
-        return doctorList;
-    }
-
-    public void setDoctorList(List<Doctor> doctorList) {
-        this.doctorList = doctorList;
-    }
 }

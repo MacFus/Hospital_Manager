@@ -24,10 +24,10 @@ public class Hospital {
     private String name;
     @OneToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "address_id", unique = true)
-    @JsonManagedReference
     private Address address;
     @OneToMany(mappedBy = "hospital")
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     private List<Doctor> doctorList = new ArrayList<>();
 
     @Override
