@@ -24,7 +24,7 @@ public class Doctor {
     private Address address;
     private LocalDateTime addDate;
     //w tabeli doctor powstanie pole wskazujące na dany szpital
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 

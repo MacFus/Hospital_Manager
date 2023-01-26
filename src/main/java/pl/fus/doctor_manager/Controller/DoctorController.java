@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pl.fus.doctor_manager.DTO.DoctorDto;
 import pl.fus.doctor_manager.Entity.Doctor;
+import pl.fus.doctor_manager.Entity.Hospital;
 import pl.fus.doctor_manager.Service.DoctorService;
 
 import java.net.URI;
@@ -21,8 +23,8 @@ public class DoctorController {
     }
 
     @PostMapping
-    ResponseEntity<Doctor> saveDoctor(@RequestBody Doctor doctor) {
-        Doctor saveDoctor = doctorService.saveDoctor(doctor);
+    ResponseEntity<DoctorDto> saveDoctor(@RequestBody DoctorDto doctor) {
+        DoctorDto saveDoctor = doctorService.saveDoctor(doctor);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(saveDoctor.getId())
