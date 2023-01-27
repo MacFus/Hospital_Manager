@@ -1,20 +1,21 @@
 package pl.fus.doctor_manager.Controller;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatchException;
+import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.fus.doctor_manager.DTO.HospitalDto;
-import pl.fus.doctor_manager.Entity.Hospital;
 import pl.fus.doctor_manager.Service.HospitalService;
 
-import javax.print.attribute.standard.Media;
 import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 //,method = RequestMethod.GET ,consumes = MediaType.APPLICATION_JSON_VALUE
@@ -24,6 +25,7 @@ public class HospitalController {
 
     public HospitalController(HospitalService hospitalService) {
         this.hospitalService = hospitalService;
+
     }
 
     @GetMapping("/all")
@@ -54,27 +56,32 @@ public class HospitalController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> updateHospital(@PathVariable Long id, @RequestBody HospitalDto dto) {
-//        ResponseEntity<Object> responseEntity = hospitalService.updateHospital(id, dto)
-//                .map(r -> ResponseEntity.noContent().build())
-//                .orElse(ResponseEntity.notFound().build());
         HospitalDto hospital = hospitalService.updateHospital(id, dto).orElseThrow();
         HttpHeaders headers = new HttpHeaders();
         System.out.println(ZonedDateTime.now());
-//        headers.setLastModified(ZonedDateTime.now());
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity(hospital, HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteHospital(@PathVariable Long id) throws NoSuchElementException{
+    ResponseEntity<?> deleteHospital(@PathVariable Long id) throws NoSuchElementException {
         try {
             hospitalService.deleteHospital(id);
             return new ResponseEntity(HttpStatus.OK);
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
         }
+    }
 
+    @PatchMapping("/{id}")
+    ResponseEntity<?> updatePartly(@PathVariable Long id, @RequestBody String patch) {
+        try {
+            hospitalService.updatePartly(id, patch);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } catch (RuntimeException e) {
+            return new ResponseEntity(HttpStatusCode.valueOf(400));
 
+        }
     }
 
 }
