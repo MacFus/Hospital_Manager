@@ -22,11 +22,10 @@ public class Hospital {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.ALL}) //, orphanRemoval = true
     @JoinColumn(name = "address_id", unique = true)
     private Address address;
-    @OneToMany(mappedBy = "hospital")
-//    @JsonManagedReference
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Doctor> doctorList = new ArrayList<>();
 

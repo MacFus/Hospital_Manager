@@ -25,6 +25,9 @@ public class DoctorService {
     }
 
     public DoctorDto saveDoctor(DoctorDto doctor) {
+        if(!hospitalRepo.existsById(doctor.getHospitalId())){
+            throw new NoSuchElementException();
+        }
         Doctor doc = doctorMapper.map(doctor);
         doc.setAddDate(LocalDateTime.now());
         doc.setHospital(hospitalRepo.findById(doctor.getHospitalId())
