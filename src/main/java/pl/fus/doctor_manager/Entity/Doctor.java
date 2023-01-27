@@ -24,14 +24,13 @@ public class Doctor {
     private String firstName;
     private String lastName;
     private String expertise;
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id", unique = false)
     private Address address;
     private LocalDateTime addDate;
     //w tabeli doctor powstanie pole wskazujące na dany szpital
     @ManyToOne(optional = false)
     @JoinColumn(name = "hospital_id")
-//    @JsonBackReference
     private Hospital hospital;
 
     @Override

@@ -20,10 +20,10 @@ public class Address {
     private String location;
     private String street;
     private String postcode;
-    @OneToOne(mappedBy = "address", cascade = {CascadeType.PERSIST})
+    @OneToOne(mappedBy = "address", cascade = {CascadeType.ALL})
     @JsonIgnore
     private Doctor doctor;
-    @OneToOne(mappedBy = "address", cascade = {CascadeType.PERSIST})
+    @OneToOne(mappedBy = "address", cascade = {CascadeType.ALL})
     @JsonIgnore
     private Hospital hospital;
 
@@ -34,8 +34,6 @@ public class Address {
                 ", location='" + location + '\'' +
                 ", street='" + street + '\'' +
                 ", postcode='" + postcode + '\'' +
-                ", doctor=" + doctor +
-                ", hospital=" + hospital +
                 '}';
     }
 }

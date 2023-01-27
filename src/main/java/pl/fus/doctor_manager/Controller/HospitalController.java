@@ -12,6 +12,7 @@ import pl.fus.doctor_manager.Service.HospitalService;
 
 import javax.print.attribute.standard.Media;
 import java.net.URI;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -58,8 +59,22 @@ public class HospitalController {
 //                .orElse(ResponseEntity.notFound().build());
         HospitalDto hospital = hospitalService.updateHospital(id, dto).orElseThrow();
         HttpHeaders headers = new HttpHeaders();
+        System.out.println(ZonedDateTime.now());
+//        headers.setLastModified(ZonedDateTime.now());
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity(hospital, HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteHospital(@PathVariable Long id) throws NoSuchElementException{
+        try {
+            hospitalService.deleteHospital(id);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
+
+
     }
 
 }
