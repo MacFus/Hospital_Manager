@@ -3,10 +3,7 @@ package pl.fus.doctor_manager.Controller;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.fus.doctor_manager.DTO.DoctorDto;
 import pl.fus.doctor_manager.Entity.Doctor;
@@ -29,15 +26,15 @@ public class DoctorController {
     ResponseEntity<DoctorDto> saveDoctor(@RequestBody DoctorDto doctor) {
         try {
             DoctorDto saveDoctor = doctorService.saveDoctor(doctor);
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(saveDoctor.getId())
-                    .toUri();
-            return ResponseEntity.created(uri).body(saveDoctor);
+//            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+//                    .path("/{id}")
+//                    .buildAndExpand(saveDoctor.getId())
+//                    .toUri();
+            return ResponseEntity.ok(saveDoctor);
         }catch (NoSuchElementException e){
             return new ResponseEntity(HttpStatusCode.valueOf(404));
         }
-
     }
+
 
 }

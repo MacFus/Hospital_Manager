@@ -2,6 +2,7 @@ package pl.fus.doctor_manager.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class Address {
     private String postcode;
     @OneToOne(mappedBy = "address", cascade = {CascadeType.ALL})
     @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Doctor doctor;
     @OneToOne(mappedBy = "address", cascade = {CascadeType.ALL})
     @JsonIgnore

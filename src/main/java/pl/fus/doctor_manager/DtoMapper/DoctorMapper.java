@@ -33,7 +33,7 @@ public class DoctorMapper {
 
     public DoctorDto map(Doctor doctor) {
         DoctorDto doc = new DoctorDto();
-        doc.setId(doctor.getId());
+//        doc.setId(doctor.getId());
         doc.setFirstName(doctor.getFirstName());
         doc.setLastName(doctor.getLastName());
         doc.setExpertise(doctor.getExpertise());

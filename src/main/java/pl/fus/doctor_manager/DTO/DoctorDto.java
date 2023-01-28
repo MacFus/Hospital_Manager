@@ -1,5 +1,6 @@
 package pl.fus.doctor_manager.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,10 +10,11 @@ import pl.fus.doctor_manager.Entity.Address;
 @Setter
 @NoArgsConstructor
 public class DoctorDto {
-    private Long id;
+//    private Long id;
     private String firstName;
     private String lastName;
     private String expertise;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Address address;
     private Long hospitalId;
 }

@@ -8,6 +8,7 @@ import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pl.fus.doctor_manager.DTO.DoctorDto;
 import pl.fus.doctor_manager.DTO.HospitalDto;
 import pl.fus.doctor_manager.Service.HospitalService;
 
@@ -78,10 +79,16 @@ public class HospitalController {
         try {
             hospitalService.updatePartly(id, patch);
             return new ResponseEntity(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             return new ResponseEntity(HttpStatusCode.valueOf(400));
 
         }
     }
+    @GetMapping("/{id}/doctors")
+    ResponseEntity<List<DoctorDto>> getDoctorsFromHospital(@PathVariable Long id){
+        List<DoctorDto> doctors = hospitalService.getDoctorsByHospitalId(id);
+        return ResponseEntity.ok(doctors);
+    }
+
 
 }

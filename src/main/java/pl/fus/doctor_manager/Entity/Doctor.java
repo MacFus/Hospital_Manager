@@ -1,9 +1,6 @@
 package pl.fus.doctor_manager.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonMerge;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +23,7 @@ public class Doctor {
     private String expertise;
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id", unique = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Address address;
     private LocalDateTime addDate;
     //w tabeli doctor powstanie pole wskazujące na dany szpital
