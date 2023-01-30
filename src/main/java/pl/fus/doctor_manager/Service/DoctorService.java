@@ -9,7 +9,9 @@ import pl.fus.doctor_manager.Repository.DoctorRepo;
 import pl.fus.doctor_manager.Repository.HospitalRepo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class DoctorService {
@@ -34,5 +36,14 @@ public class DoctorService {
                 .orElseThrow(NoSuchElementException::new));
         DoctorDto savedDoctor = doctorMapper.map(doctorRepo.save(doc));
         return savedDoctor;
+    }
+
+    public List<DoctorDto> getAll() {
+        List<Doctor> all = doctorRepo.findAll();
+        return all.stream().map(doctorMapper::map).toList();
+    }
+
+    public Optional<DoctorDto> getDoctorById(Long id) throws NoSuchElementException{
+        return doctorRepo.findById(id).map(doctorMapper::map);
     }
 }
