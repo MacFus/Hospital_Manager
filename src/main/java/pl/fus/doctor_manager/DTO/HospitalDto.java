@@ -17,7 +17,7 @@ import java.util.List;
 public class HospitalDto  {
     private Long id;
     private String name;
-    private Address address;
+    private AddressDto address;
 //    @JsonManagedReference
-    private List<Doctor> doctorList;
+    private List<DoctorDto> doctorList;
 }

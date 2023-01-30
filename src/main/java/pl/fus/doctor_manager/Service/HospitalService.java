@@ -8,6 +8,7 @@ import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import org.springframework.stereotype.Service;
 import pl.fus.doctor_manager.DTO.DoctorDto;
 import pl.fus.doctor_manager.DTO.HospitalDto;
+import pl.fus.doctor_manager.DtoMapper.AddressMapper;
 import pl.fus.doctor_manager.DtoMapper.DoctorMapper;
 import pl.fus.doctor_manager.DtoMapper.HospitalMapper;
 import pl.fus.doctor_manager.Entity.Address;
@@ -23,18 +24,20 @@ import java.util.*;
 @Service
 public class HospitalService {
     private final HospitalRepo hospitalRepo;
-    private final HospitalMapper hospitalMapper;
-    private final AddressRepo addressRepo;
     private final DoctorRepo doctorRepo;
+    private final AddressRepo addressRepo;
+    private final HospitalMapper hospitalMapper;
     private final DoctorMapper doctorMapper;
+    private final AddressMapper addressMapper;
     private final ObjectMapper objectMapper;
 
-    public HospitalService(HospitalRepo hospitalRepo, HospitalMapper hospitalMapper, AddressRepo addressRepo, DoctorRepo doctorRepo, DoctorMapper doctorMapper, ObjectMapper objectMapper) {
+    public HospitalService(HospitalRepo hospitalRepo, HospitalMapper hospitalMapper, AddressRepo addressRepo, DoctorRepo doctorRepo, DoctorMapper doctorMapper, AddressMapper addressMapper, ObjectMapper objectMapper) {
         this.hospitalRepo = hospitalRepo;
         this.hospitalMapper = hospitalMapper;
         this.addressRepo = addressRepo;
         this.doctorRepo = doctorRepo;
         this.doctorMapper = doctorMapper;
+        this.addressMapper = addressMapper;
         this.objectMapper = objectMapper;
     }
 
@@ -62,7 +65,7 @@ public class HospitalService {
         Hospital hospital = hospitalRepo.findById(id).orElseThrow();
         Address address = hospital.getAddress();
         dto.getAddress().setId(address.getId());
-        addressRepo.save(dto.getAddress());
+        addressRepo.save(addressMapper.map(dto.getAddress()));
 //        dto.setId(id);
         Hospital hospToUpdate = hospitalMapper.map(dto);
         hospToUpdate.setId(id);
