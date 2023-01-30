@@ -23,7 +23,7 @@ public class Address {
     private String postcode;
     @OneToOne(mappedBy = "address", cascade = {CascadeType.ALL})
     @JsonIgnore
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Doctor doctor;
     @OneToOne(mappedBy = "address", cascade = {CascadeType.ALL})
     @JsonIgnore

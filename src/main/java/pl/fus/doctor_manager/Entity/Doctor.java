@@ -23,7 +23,7 @@ public class Doctor {
     private String expertise;
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id", unique = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Address address;
     private LocalDateTime addDate;
     //w tabeli doctor powstanie pole wskazujące na dany szpital
