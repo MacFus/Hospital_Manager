@@ -17,6 +17,6 @@ public class DoctorDto {
     private String expertise;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private AddressDto address;
-    @JsonIgnore
+//    @JsonIgnore
     private Long hospitalId;
 }
