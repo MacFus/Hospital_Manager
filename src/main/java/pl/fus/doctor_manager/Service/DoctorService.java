@@ -27,7 +27,7 @@ public class DoctorService {
     }
 
     public DoctorDto saveDoctor(DoctorDto doctor) {
-        if(!hospitalRepo.existsById(doctor.getHospitalId())){
+        if (!hospitalRepo.existsById(doctor.getHospitalId())) {
             throw new NoSuchElementException();
         }
         Doctor doc = doctorMapper.map(doctor);
@@ -43,7 +43,22 @@ public class DoctorService {
         return all.stream().map(doctorMapper::map).toList();
     }
 
-    public Optional<DoctorDto> getDoctorById(Long id) throws NoSuchElementException{
+    public Optional<DoctorDto> getDoctorById(Long id) throws NoSuchElementException {
         return doctorRepo.findById(id).map(doctorMapper::map);
+    }
+
+    public void deleteDoctor(Long id) {
+        if (!doctorRepo.existsById(id)){
+            throw new NoSuchElementException();
+        }
+            doctorRepo.deleteById(id);
+    }
+
+    public void updateDoctor(Long id, DoctorDto dto) throws NoSuchElementException{
+        if(!doctorRepo.existsById(id))
+            throw new NoSuchElementException();
+        Doctor doctor = doctorMapper.map(dto);
+        doctor.setId(id);
+        doctorRepo.save(doctor);
     }
 }

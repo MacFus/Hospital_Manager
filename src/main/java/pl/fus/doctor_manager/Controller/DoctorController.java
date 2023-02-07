@@ -28,13 +28,13 @@ public class DoctorController {
 //                    .buildAndExpand(saveDoctor.getId())
 //                    .toUri();
             return ResponseEntity.ok(saveDoctor);
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/all")
-    ResponseEntity<List<DoctorDto>> getAllDoctors(){
+    ResponseEntity<List<DoctorDto>> getAllDoctors() {
         List<DoctorDto> doctorDtoList = doctorService.getAll();
         return ResponseEntity.ok(doctorDtoList);
     }
@@ -44,12 +44,30 @@ public class DoctorController {
         try {
             DoctorDto doctorDto = doctorService.getDoctorById(id).orElseThrow(NoSuchElementException::new);
             return ResponseEntity.ok(doctorDto);
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
+    @DeleteMapping
+    ResponseEntity<?> deleteDoctor(@PathVariable Long id) {
+        try {
+            doctorService.deleteDoctor(id);
+            return ResponseEntity.ok().build();
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
+    @PutMapping("/{id}")
+    ResponseEntity<?> updateDoctor(@PathVariable Long id, @RequestBody DoctorDto dto) {
+        try {
+            doctorService.updateDoctor(id, dto);
+            return ResponseEntity.ok().build();
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 }
