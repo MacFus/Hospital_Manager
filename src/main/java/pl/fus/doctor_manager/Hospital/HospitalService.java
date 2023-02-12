@@ -1,4 +1,4 @@
-package pl.fus.doctor_manager.Service;
+package pl.fus.doctor_manager.Hospital;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -6,17 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatchException;
 import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import org.springframework.stereotype.Service;
-import pl.fus.doctor_manager.DTO.DoctorDto;
-import pl.fus.doctor_manager.DTO.HospitalDto;
-import pl.fus.doctor_manager.DtoMapper.AddressMapper;
-import pl.fus.doctor_manager.DtoMapper.DoctorMapper;
-import pl.fus.doctor_manager.DtoMapper.HospitalMapper;
-import pl.fus.doctor_manager.Entity.Address;
-import pl.fus.doctor_manager.Entity.Doctor;
-import pl.fus.doctor_manager.Entity.Hospital;
-import pl.fus.doctor_manager.Repository.AddressRepo;
-import pl.fus.doctor_manager.Repository.DoctorRepo;
-import pl.fus.doctor_manager.Repository.HospitalRepo;
+import pl.fus.doctor_manager.Doctor.DoctorDto;
+import pl.fus.doctor_manager.Address.AddressMapper;
+import pl.fus.doctor_manager.Doctor.DoctorMapper;
+import pl.fus.doctor_manager.Doctor.Address;
+import pl.fus.doctor_manager.Doctor.Doctor;
+import pl.fus.doctor_manager.Address.AddressRepo;
+import pl.fus.doctor_manager.Doctor.DoctorRepo;
 
 import java.util.*;
 

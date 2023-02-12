@@ -1,8 +1,8 @@
-package pl.fus.doctor_manager.DtoMapper;
+package pl.fus.doctor_manager.Address;
 
 import org.springframework.stereotype.Service;
-import pl.fus.doctor_manager.DTO.AddressDto;
-import pl.fus.doctor_manager.Entity.Address;
+import pl.fus.doctor_manager.Address.AddressDto;
+import pl.fus.doctor_manager.Doctor.Address;
 
 @Service
 public class AddressMapper {
@@ -16,7 +16,7 @@ public class AddressMapper {
         return address;
     }
 
-    AddressDto map(Address address) {
+    public AddressDto map(Address address) {
         AddressDto dto = new AddressDto();
         dto.setPostcode(address.getPostcode());
         dto.setStreet(address.getStreet());

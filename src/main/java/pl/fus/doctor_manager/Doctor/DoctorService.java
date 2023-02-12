@@ -1,12 +1,7 @@
-package pl.fus.doctor_manager.Service;
+package pl.fus.doctor_manager.Doctor;
 
 import org.springframework.stereotype.Service;
-import pl.fus.doctor_manager.DTO.DoctorDto;
-import pl.fus.doctor_manager.DtoMapper.DoctorMapper;
-import pl.fus.doctor_manager.Entity.Doctor;
-import pl.fus.doctor_manager.Entity.Hospital;
-import pl.fus.doctor_manager.Repository.DoctorRepo;
-import pl.fus.doctor_manager.Repository.HospitalRepo;
+import pl.fus.doctor_manager.Hospital.HospitalRepo;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -48,17 +43,22 @@ public class DoctorService {
     }
 
     public void deleteDoctor(Long id) {
-        if (!doctorRepo.existsById(id)){
+        if (!doctorRepo.existsById(id)) {
             throw new NoSuchElementException();
         }
-            doctorRepo.deleteById(id);
+        doctorRepo.deleteById(id);
     }
 
-    public void updateDoctor(Long id, DoctorDto dto) throws NoSuchElementException{
-        if(!doctorRepo.existsById(id))
+    public void updateDoctor(Long id, DoctorDto dto) throws NoSuchElementException {
+        if (!doctorRepo.existsById(id))
             throw new NoSuchElementException();
+        Doctor obj = doctorRepo.findById(id).orElseThrow();
         Doctor doctor = doctorMapper.map(dto);
         doctor.setId(id);
+        doctor.setAddDate(obj.getAddDate());
+        doctor.getAddress()
+                .setId(obj.getAddress().getId());
+        doctor.setHospital(hospitalRepo.findById(dto.getHospitalId()).orElseThrow());
         doctorRepo.save(doctor);
     }
 }

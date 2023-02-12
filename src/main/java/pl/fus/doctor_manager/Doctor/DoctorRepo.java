@@ -1,9 +1,8 @@
-package pl.fus.doctor_manager.Repository;
+package pl.fus.doctor_manager.Doctor;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import pl.fus.doctor_manager.Entity.Doctor;
 
 import java.util.List;
 

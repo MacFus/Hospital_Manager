@@ -1,14 +1,11 @@
-package pl.fus.doctor_manager.DTO;
+package pl.fus.doctor_manager.Address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.fus.doctor_manager.Entity.Doctor;
-import pl.fus.doctor_manager.Entity.Hospital;
+import pl.fus.doctor_manager.Doctor.Doctor;
+import pl.fus.doctor_manager.Hospital.Hospital;
 @Getter
 @Setter
 @NoArgsConstructor

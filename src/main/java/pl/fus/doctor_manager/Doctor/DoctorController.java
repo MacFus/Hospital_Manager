@@ -1,11 +1,8 @@
-package pl.fus.doctor_manager.Controller;
+package pl.fus.doctor_manager.Doctor;
 
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import pl.fus.doctor_manager.DTO.DoctorDto;
-import pl.fus.doctor_manager.Service.DoctorService;
 
 import java.util.List;
 import java.util.NoSuchElementException;

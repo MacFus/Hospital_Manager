@@ -1,13 +1,12 @@
-package pl.fus.doctor_manager.Entity;
+package pl.fus.doctor_manager.Hospital;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.fus.doctor_manager.Doctor.Address;
+import pl.fus.doctor_manager.Doctor.Doctor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,6 @@ public class Hospital {
     @JoinColumn(name = "address_id", unique = true)
     private Address address;
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
-//    @JsonIgnore
     private List<Doctor> doctorList = new ArrayList<>();
 
     @Override

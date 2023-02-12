@@ -1,13 +1,11 @@
-package pl.fus.doctor_manager.DTO;
+package pl.fus.doctor_manager.Hospital;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.fus.doctor_manager.Entity.Address;
-import pl.fus.doctor_manager.Entity.Doctor;
+import pl.fus.doctor_manager.Address.AddressDto;
+import pl.fus.doctor_manager.Doctor.DoctorDto;
 
 import java.util.List;
 
@@ -18,7 +16,6 @@ public class HospitalDto {
     private Long id;
     private String name;
     private AddressDto address;
-    //    @
     @JsonIgnore
     private List<DoctorDto> doctorList;
 }

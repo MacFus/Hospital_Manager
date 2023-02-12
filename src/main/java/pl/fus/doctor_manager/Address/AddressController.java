@@ -1,13 +1,11 @@
-package pl.fus.doctor_manager.Controller;
+package pl.fus.doctor_manager.Address;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.fus.doctor_manager.Entity.Address;
-import pl.fus.doctor_manager.Repository.AddressRepo;
-import pl.fus.doctor_manager.Service.AddressService;
+import pl.fus.doctor_manager.Doctor.Address;
 
 @Controller
 @RequestMapping("/address")

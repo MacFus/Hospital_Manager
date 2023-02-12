@@ -1,11 +1,12 @@
-package pl.fus.doctor_manager.Entity;
+package pl.fus.doctor_manager.Doctor;
 
-import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.fus.doctor_manager.Doctor.Address;
+import pl.fus.doctor_manager.Hospital.Hospital;
 
 import java.time.LocalDateTime;
 

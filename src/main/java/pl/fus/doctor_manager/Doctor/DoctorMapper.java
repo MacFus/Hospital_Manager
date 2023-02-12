@@ -1,10 +1,8 @@
-package pl.fus.doctor_manager.DtoMapper;
+package pl.fus.doctor_manager.Doctor;
 
 import org.springframework.stereotype.Service;
-import pl.fus.doctor_manager.DTO.AddressDto;
-import pl.fus.doctor_manager.DTO.DoctorDto;
-import pl.fus.doctor_manager.Entity.Address;
-import pl.fus.doctor_manager.Entity.Doctor;
+import pl.fus.doctor_manager.Address.AddressDto;
+import pl.fus.doctor_manager.Address.AddressMapper;
 
 @Service
 public class DoctorMapper {

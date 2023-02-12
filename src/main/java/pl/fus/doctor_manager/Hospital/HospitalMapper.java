@@ -1,12 +1,9 @@
-package pl.fus.doctor_manager.DtoMapper;
+package pl.fus.doctor_manager.Hospital;
 
 import org.springframework.stereotype.Service;
-import pl.fus.doctor_manager.DTO.AddressDto;
-import pl.fus.doctor_manager.DTO.DoctorDto;
-import pl.fus.doctor_manager.DTO.HospitalDto;
-import pl.fus.doctor_manager.Entity.Address;
-import pl.fus.doctor_manager.Entity.Doctor;
-import pl.fus.doctor_manager.Entity.Hospital;
+import pl.fus.doctor_manager.Address.AddressMapper;
+import pl.fus.doctor_manager.Doctor.DoctorMapper;
+import pl.fus.doctor_manager.Doctor.Doctor;
 
 import java.util.List;
 

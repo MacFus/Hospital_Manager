@@ -1,22 +1,14 @@
-package pl.fus.doctor_manager.Controller;
+package pl.fus.doctor_manager.Hospital;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.fge.jsonpatch.JsonPatchException;
-import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import pl.fus.doctor_manager.DTO.DoctorDto;
-import pl.fus.doctor_manager.DTO.HospitalDto;
-import pl.fus.doctor_manager.Service.HospitalService;
+import pl.fus.doctor_manager.Doctor.DoctorDto;
 
 import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @RestController
 //,method = RequestMethod.GET ,consumes = MediaType.APPLICATION_JSON_VALUE

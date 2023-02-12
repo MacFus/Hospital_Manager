@@ -1,8 +1,8 @@
-package pl.fus.doctor_manager.Service;
+package pl.fus.doctor_manager.Address;
 
 import org.springframework.stereotype.Service;
-import pl.fus.doctor_manager.Entity.Address;
-import pl.fus.doctor_manager.Repository.AddressRepo;
+import pl.fus.doctor_manager.Doctor.Address;
+import pl.fus.doctor_manager.Address.AddressRepo;
 @Service
 public class AddressService {
     private AddressRepo addressRepo;
