@@ -26,7 +26,7 @@ public class Hospital {
     @JoinColumn(name = "address_id", unique = true)
     private Address address;
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
-    @JsonIgnore
+//    @JsonIgnore
     private List<Doctor> doctorList = new ArrayList<>();
 
     @Override

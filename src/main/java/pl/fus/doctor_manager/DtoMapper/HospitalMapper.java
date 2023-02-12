@@ -25,12 +25,12 @@ public class HospitalMapper {
         hospital.setId(dto.getId());
         hospital.setName(dto.getName());
         hospital.setAddress(addressMapper.map(dto.getAddress()));
-        List<DoctorDto> doctorList = dto.getDoctorList();
-        hospital.setDoctorList(
-                doctorList
-                        .stream()
-                        .map(doctorMapper::map)
-                        .toList());
+//        List<DoctorDto> doctorList = dto.getDoctorList();
+//        hospital.setDoctorList(
+//                doctorList
+//                        .stream()
+//                        .map(doctorMapper::map)
+//                        .toList());
         return hospital;
     }
 

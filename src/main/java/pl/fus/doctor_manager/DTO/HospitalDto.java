@@ -14,10 +14,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class HospitalDto  {
+public class HospitalDto {
     private Long id;
     private String name;
     private AddressDto address;
-//    @JsonManagedReference
+    //    @
+    @JsonIgnore
     private List<DoctorDto> doctorList;
 }
