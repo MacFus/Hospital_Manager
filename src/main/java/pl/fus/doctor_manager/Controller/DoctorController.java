@@ -27,7 +27,7 @@ public class DoctorController {
 //                    .path("/{id}")
 //                    .buildAndExpand(saveDoctor.getId())
 //                    .toUri();
-            return ResponseEntity.ok(saveDoctor);
+            return new ResponseEntity(saveDoctor, HttpStatusCode.valueOf(201));
         } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
         }

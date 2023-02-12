@@ -52,9 +52,6 @@ public class HospitalService {
     }
 
     public Optional<HospitalDto> getHospitalById(Long id) {
-//        Hospital hospital = hospitalRepo.findById(id).orElseThrow();
-//        HospitalDto hospitalDto = hospitalMapper.map(hospital);
-//
         return hospitalRepo.findById(id).map(hospitalMapper::map);
     }
 
@@ -62,14 +59,12 @@ public class HospitalService {
         if (!hospitalRepo.existsById(id)) {
             return Optional.empty();
         }
-        Hospital hospital = hospitalRepo.findById(id).orElseThrow();
-        Address address = hospital.getAddress();
-        dto.getAddress().setId(address.getId());
-        addressRepo.save(addressMapper.map(dto.getAddress()));
-//        dto.setId(id);
-        Hospital hospToUpdate = hospitalMapper.map(dto);
-        hospToUpdate.setId(id);
-        Hospital savedHospital = hospitalRepo.save(hospToUpdate);
+        Address address = hospitalRepo.findById(id).get().getAddress();
+
+        Hospital hospitalToUpdate = hospitalMapper.map(dto);
+        hospitalToUpdate.setId(id);
+        hospitalToUpdate.getAddress().setId(address.getId());
+        Hospital savedHospital = hospitalRepo.save(hospitalToUpdate);
         return Optional.of(hospitalMapper.map(savedHospital));
     }
 
@@ -86,10 +81,10 @@ public class HospitalService {
             throw new NoSuchElementException();
         try {
             HospitalDto hospitalDto = getHospitalById(id).orElseThrow();
-//            hospitalDto.setId(id);
             HospitalDto hospitalPatched = applyPatch(hospitalDto, patch);
             Hospital hospital = hospitalMapper.map(hospitalPatched);
             hospital.setId(id);
+            hospital.getAddress().setId(hospitalRepo.findById(id).get().getAddress().getId());
             hospitalRepo.save(hospital);
         } catch (JsonProcessingException | JsonPatchException e) {
             throw new InputMismatchException();
