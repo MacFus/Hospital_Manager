@@ -1,8 +1,6 @@
 package pl.fus.doctor_manager.Address;
 
 import org.springframework.stereotype.Service;
-import pl.fus.doctor_manager.Address.AddressDto;
-import pl.fus.doctor_manager.Doctor.Address;
 
 @Service
 public class AddressMapper {

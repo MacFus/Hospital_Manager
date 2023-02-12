@@ -1,6 +1,7 @@
 package pl.fus.doctor_manager.Doctor;
 
 import org.springframework.stereotype.Service;
+import pl.fus.doctor_manager.Address.Address;
 import pl.fus.doctor_manager.Address.AddressDto;
 import pl.fus.doctor_manager.Address.AddressMapper;
 

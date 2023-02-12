@@ -1,18 +1,16 @@
 package pl.fus.doctor_manager.Hospital;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatchException;
-import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import org.springframework.stereotype.Service;
 import pl.fus.doctor_manager.Doctor.DoctorDto;
 import pl.fus.doctor_manager.Address.AddressMapper;
 import pl.fus.doctor_manager.Doctor.DoctorMapper;
-import pl.fus.doctor_manager.Doctor.Address;
+import pl.fus.doctor_manager.Address.Address;
 import pl.fus.doctor_manager.Doctor.Doctor;
 import pl.fus.doctor_manager.Address.AddressRepo;
 import pl.fus.doctor_manager.Doctor.DoctorRepo;
+import pl.fus.doctor_manager.PatchApplier;
 
 import java.util.*;
 
@@ -25,16 +23,15 @@ public class HospitalService {
     private final HospitalMapper hospitalMapper;
     private final DoctorMapper doctorMapper;
     private final AddressMapper addressMapper;
-    private final ObjectMapper objectMapper;
 
-    public HospitalService(HospitalRepo hospitalRepo, HospitalMapper hospitalMapper, AddressRepo addressRepo, DoctorRepo doctorRepo, DoctorMapper doctorMapper, AddressMapper addressMapper, ObjectMapper objectMapper) {
+    public HospitalService(HospitalRepo hospitalRepo, HospitalMapper hospitalMapper, AddressRepo addressRepo, DoctorRepo doctorRepo, DoctorMapper doctorMapper, AddressMapper addressMapper) {
         this.hospitalRepo = hospitalRepo;
         this.hospitalMapper = hospitalMapper;
         this.addressRepo = addressRepo;
         this.doctorRepo = doctorRepo;
         this.doctorMapper = doctorMapper;
         this.addressMapper = addressMapper;
-        this.objectMapper = objectMapper;
+
     }
 
     public HospitalDto save(HospitalDto hospitalDto) {
@@ -77,7 +74,8 @@ public class HospitalService {
             throw new NoSuchElementException();
         try {
             HospitalDto hospitalDto = getHospitalById(id).orElseThrow();
-            HospitalDto hospitalPatched = applyPatch(hospitalDto, patch);
+//            HospitalDto hospitalPatched = applyPatch();
+            HospitalDto hospitalPatched = PatchApplier.applyPatch(hospitalDto, patch);
             Hospital hospital = hospitalMapper.map(hospitalPatched);
             hospital.setId(id);
             hospital.getAddress().setId(hospitalRepo.findById(id).get().getAddress().getId());
@@ -86,14 +84,6 @@ public class HospitalService {
             throw new InputMismatchException();
         }
 
-    }
-
-    private HospitalDto applyPatch(HospitalDto hospital, String patch) throws JsonProcessingException, JsonPatchException {
-        JsonNode node = objectMapper.convertValue(hospital, JsonNode.class);
-        JsonNode patchNode = objectMapper.readTree(patch);
-        JsonMergePatch mergePatch = JsonMergePatch.fromJson(patchNode);
-        node = mergePatch.apply(node);
-        return objectMapper.treeToValue(node, hospital.getClass());
     }
 
     public List<DoctorDto> getDoctorsByHospitalId(Long id) {

@@ -1,9 +1,14 @@
 package pl.fus.doctor_manager.Doctor;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.fge.jsonpatch.JsonPatchException;
 import org.springframework.stereotype.Service;
+import pl.fus.doctor_manager.Hospital.Hospital;
 import pl.fus.doctor_manager.Hospital.HospitalRepo;
+import pl.fus.doctor_manager.PatchApplier;
 
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -60,5 +65,28 @@ public class DoctorService {
                 .setId(obj.getAddress().getId());
         doctor.setHospital(hospitalRepo.findById(dto.getHospitalId()).orElseThrow());
         doctorRepo.save(doctor);
+    }
+
+    public void updatePartly(Long id, String patch) {
+        if (!doctorRepo.existsById(id))
+            throw new NoSuchElementException();
+        try {
+            Doctor doc = doctorRepo.findById(id).orElseThrow();
+
+            DoctorDto doctorDto = doctorMapper.map(doctorRepo.findById(id).orElseThrow());
+            DoctorDto doctorPatched = PatchApplier.applyPatch(doctorDto, patch);
+            Doctor doctor = doctorMapper.map(doctorPatched);
+            doctor.setId(id);
+            doctor.setAddDate(doc.getAddDate());
+//            doctor.getAddress().setId(hospitalRepo.findById(id).get().getAddress().getId());
+            doctor.getAddress().setId(doc.getAddress().getId());
+            doctor.setHospital(hospitalRepo.findById(doctorPatched.getHospitalId()).orElseThrow());
+            if(doctor.getHospital() == null)
+                doctor.setHospital(doc.getHospital());
+
+            doctorRepo.save(doctor);
+        } catch (JsonProcessingException | JsonPatchException e) {
+            throw new InputMismatchException();
+        }
     }
 }

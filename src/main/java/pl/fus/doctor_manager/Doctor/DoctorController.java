@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -62,6 +63,17 @@ public class DoctorController {
             doctorService.updateDoctor(id, dto);
             return ResponseEntity.ok().build();
         } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/{id}")
+    ResponseEntity<?> updatePartly(@PathVariable Long id, @RequestBody String patch){
+        try {
+            doctorService.updatePartly(id, patch);
+            return ResponseEntity.noContent().build();
+
+        }catch (InputMismatchException e){
             return ResponseEntity.notFound().build();
         }
     }

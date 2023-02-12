@@ -1,4 +1,4 @@
-package pl.fus.doctor_manager.Doctor;
+package pl.fus.doctor_manager.Address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.fus.doctor_manager.Doctor.Doctor;
 import pl.fus.doctor_manager.Hospital.Hospital;
 
 @AllArgsConstructor
